@@ -1,0 +1,10 @@
+version: "3"
+services:
+  avahi:
+    image: sheabot/daserver-avahi:alpine
+    container_name: daserver-avahi
+    network_mode: host
+    restart: on-failure
+    volumes:
+      - ./avahi-daemon.conf:/etc/avahi/avahi-daemon.conf:ro
+      - ./services:/etc/avahi/services:ro
