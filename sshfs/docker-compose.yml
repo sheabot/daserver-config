@@ -1,0 +1,16 @@
+version: "3"
+services:
+  sshfs:
+    image: sheabot/daserver-sshfs:alpine
+    container_name: daserver-sshfs
+    devices:
+      - /dev/fuse:/dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    restart: on-failure
+    env_file: sshfs.env
+    volumes:
+      - ./ssh:/root/.ssh:ro
+      - /mnt/sshfs:/mnt/sshfs:shared
